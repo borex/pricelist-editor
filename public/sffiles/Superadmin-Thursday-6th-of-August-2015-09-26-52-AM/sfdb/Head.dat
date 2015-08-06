@@ -1,0 +1,49 @@
+characterset                  1
+city                          
+comment                       
+country                       DE
+currencydescription           
+currencydescription-decimals  
+cylindergroup-1               6
+cylindergroup-2               8
+cylindergroup-base            4
+fax                           
+fax-order                     
+language                      DE
+mail                          
+manufacturer-code             ROD
+manufacturer-name             Rodenstock Softwarehäuser
+manufacturer-subcode          SWH
+manufacturer-subname          
+phone                         
+phone-order                   
+po-box-text                   
+po-box-zip-code               
+pricedefinition-cylinder      +
+pricefield-01                 10
+pricefield-02                 20
+pricefield-03                 21
+pricefield-04                 10
+pricefield-05                 00
+pricefield-decimals           0
+pricefield-description-01     
+pricefield-description-02     
+pricefield-description-03     
+pricefield-description-04     
+pricefield-description-05     
+printpricelist-filename-pdf   
+printpricelist-filename-xfdf  
+prismgroup-1                  3
+prismgroup-2                  6
+prismgroup-3                  10
+prismgroup-4                  15
+prismgroup-5                  15
+Software-id                   ccgpl6edit-6.10.1.506
+street                        
+uid-manufacturer              ROD-SWH-DE-DE-20140401-11.zip
+uid-postedit                  
+Url                           
+Valid-from                    20140401
+Valid-until                   
+version                       6.10.1
+zip-code                      
