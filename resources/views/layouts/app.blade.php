@@ -21,6 +21,7 @@
 		<link href="{{ asset('sximo/js/plugins/select2/select2.css')}}" rel="stylesheet">
 		<link href="{{ asset('sximo/js/plugins/iCheck/skins/square/green.css')}}" rel="stylesheet">
 		<link href="{{ asset('sximo/js/plugins/fancybox/jquery.fancybox.css') }}" rel="stylesheet">
+		<link href="{{ asset('switch/bootstrap-switch.css')}}" rel="stylesheet">
 			
 		<link href="{{ asset('sximo/css/animate.css')}}" rel="stylesheet">		
 		<link href="{{ asset('sximo/css/icons.min.css')}}" rel="stylesheet">
@@ -31,7 +32,30 @@
 		<link href="{{ asset('sximo/css/'.Session::get('themes').'.css')}}" rel="stylesheet">	
 		@endif
 
-
+		<style>
+		.iradio_square-green
+		{
+			display:none;
+			
+		}
+		.bootstrap-switch-handle-on , .bootstrap-switch-primary ,  .bootstrap-switch-handle-off
+		{
+			width:80px !important;
+		}
+		.bootstrap-switch-label
+		{
+			width:30px !important;			
+			
+		}
+		.bootstrap-switch-wrapper 
+		{
+			width:100px !important;
+			
+		}
+		</style>
+		
+		
+		
 		<script type="text/javascript" src="{{ asset('sximo/js/plugins/jquery.min.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('sximo/js/plugins/jquery.cookie.js') }}"></script>			
 		<script type="text/javascript" src="{{ asset('sximo/js/plugins/jquery-ui.min.js') }}"></script>				
@@ -51,14 +75,12 @@
 		<script type="text/javascript" src="{{ asset('sximo/js/plugins/toastr/toastr.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('sximo/js/plugins/bootstrap.summernote/summernote.min.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('sximo/js/simpleclone.js') }}"></script>	
-		
-
+		<script type="text/javascript" src="{{ asset('switch/bootstrap-switch.js')}}"></script>
 		<!--[if lt IE 9]>
 			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->		
-
-
+		
 	
   	</head>
   	<body class="sxim-init" >
@@ -70,17 +92,7 @@
 			@yield('content')		
 		</div>
 
-		<div class="footer fixed">
-		    <div class="pull-right">
-		         Powered By  <strong><a href="http://sximobuilder.com" target="_blank">Sximo 5 Builder</a></strong> 
-		    </div>
-		    <div>
-		        <strong>Copyright</strong> &copy; 2014-{{ date('Y')}} . {{ CNF_COMNAME }}  
-		    </div>
-		</div>		
-
-	</div>
-
+	
 <div class="modal fade" id="sximo-modal" tabindex="-1" role="dialog">
 <div class="modal-dialog">
   <div class="modal-content">
@@ -130,8 +142,10 @@ $('.spin-icon').click(function () {
 
 		
 });	
-	
-	
+
+
+$("form input[type='radio']").bootstrapSwitch();
+
 </script>
 </body> 
 </html>
