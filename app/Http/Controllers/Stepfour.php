@@ -35,9 +35,7 @@ class Stepfour extends Controller {
 	Session::put('prl_multi_myview_2',$prl_multi_myview_2);
 	Session::put('prl_pure_life_free_2',$prl_pure_life_free_2);
 	Session::put('prl_pure_life_free',$prl_pure_life_free);
-	echo"<pre>";
-	print_r(Session::all());
-	//return Redirect::to('stepfive');
+	return Redirect::to('stepfive');
 	}
 
 	

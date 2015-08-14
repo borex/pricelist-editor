@@ -14,16 +14,24 @@
 
 
 Route::get('pricelist', 'Pricelist@home');
+
+
 Route::get('stepone', 'Stepone@home');
 Route::get('steptwo', 'Steptwo@home');
 Route::get('stepthree', 'Stepthree@home');
 Route::get('stepfour', 'Stepfour@home');
+Route::get('stepfive', 'Stepfive@home');
+Route::get('stepsix', 'Stepsix@home');
+
+
+
+
 Route::post('pricelist/process', 'Pricelist@process');
 Route::post('stepone/process', 'Stepone@process');
 Route::post('steptwo/process', 'Steptwo@process');
 Route::post('stepthree/process', 'Stepthree@process');
 Route::post('stepfour/process', 'Stepfour@process');
-Route::get('sfsix', 'Sfsix@home');
+Route::post('stepfive/process', 'Stepfive@process');
 Route::post('sfsix/uploadfile', 'Sfsix@upload');
 Route::get('sfsix/deletefile/{id}', 'Sfsix@delete');
 
