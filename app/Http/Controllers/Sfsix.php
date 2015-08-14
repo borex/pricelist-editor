@@ -23,6 +23,7 @@ class Sfsix extends Controller
 			public function upload()
 			{
 				
+				$uid=(Session::get('uid'));
 				$file = Input::file('sffile');
 				if($file->isValid())
 				{
@@ -30,7 +31,6 @@ class Sfsix extends Controller
 					if(strtolower(end((explode('.',$name))))=='zip');
 					{
 						$basic_array=array('BaseCurve.Dat','CodeSubstitution.Dat','Combination.Dat' ,'Head.dat','Information.Dat','LensGeo.Dat','LensPrice.Dat','LensRange.Dat','LensType.Dat','Options.Dat', 'OptionsColor.Dat','OptionsPrice.Dat', 'OrderOptions.Dat', 'OrderOptionsNames.Dat','OrderOptionsRange.Dat','ProductGroup.Dat' ) ;
-						$uid=Session::get('uid');
 						$username=DB::table('tb_users')->select('username')->where('id',$uid)->limit(1)->get();
 						$username=ucfirst($username=($username[0]->username));
 						$date=date("l-jS-\of-F-Y-h-i-s-A");
@@ -42,6 +42,7 @@ class Sfsix extends Controller
 						$zip->extractTo(public_path().'/sffiles/'.$filename);
 						$zip->close();
 						$dir=public_path().'/sffiles/'.$filename;
+					
 						if (is_dir($dir))
 						{
   							if ($dh = opendir($dir))
@@ -53,8 +54,7 @@ class Sfsix extends Controller
 										while(($file=readdir($dh))!= false)
 										{
 											
-											echo $uid=Session::get('id');
-										//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+													
 											if($file=='LensPrice.Dat')
 											{
 												$fl=fopen(public_path().'/sffiles/'.$filename.'/'.$file,'r');
@@ -65,13 +65,12 @@ class Sfsix extends Controller
 													$lenstype= substr($row,0,6);
 													$lensprice= substr($row,6,5);
 													$lenscode= substr($row,11,50);
+													
 													DB::table('sf_lenceprice')->insert(array('lenstype'=>"$lenstype",'lensprice'=>"$lensprice",'lenscode'=>"$lenscode",'uid'=>"$uid"));
 													echo "</pre>";
 												}
 											}
-											//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-											
-											//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+											continue;
 											if($file=='BaseCurve.Dat')
 											{
 												$fl=fopen(public_path().'/sffiles/'.$filename.'/'.$file,'r');
@@ -204,45 +203,104 @@ class Sfsix extends Controller
 												}
 											}
 											
-
-											//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 											
-
+											
+											
+											if($file=='ProductGroup.Dat')
+											{
+												$fl=fopen(public_path().'/sffiles/'.$filename.'/'.$file,'r');
+												while(!feof($fl))
+												{	
+													echo "<pre>";
+													$row= fgets($fl) ;
+													$pgone= substr($row,0,7);
+													$pgtwo= substr($row,7);
+													echo "<br>";
+													DB::table('sf_productgroup')->insert(array('pgone'=>"$pgone",'pgtwo'=>"$pgtwo",'uid'=>"$uid"));
+													echo "</pre>";
+												}
 											}
+											if($file=='ProductGroup.Dat')
+											{
+												$fl=fopen(public_path().'/sffiles/'.$filename.'/'.$file,'r');
+												while(!feof($fl))
+												{	
+													echo "<pre>";
+													$row= fgets($fl) ;
+													$pgone= substr($row,0,7);
+													$pgtwo= substr($row,7);
+													echo "<br>";
+													DB::table('sf_productgroup')->insert(array('pgone'=>"$pgone",'pgtwo'=>"$pgtwo",'uid'=>"$uid"));
+													echo "</pre>";
+												}
+											}
+											
+											if($file=='OrderOptions.Dat')
+											{
+												$fl=fopen(public_path().'/sffiles/'.$filename.'/'.$file,'r');
+												while(!feof($fl))
+												{	
+													echo "<pre>";
+													$row= fgets($fl) ;
+													$pgone= substr($row,0,7);
+													$pgtwo= substr($row,7);
+													echo "<br>";
+													DB::table('sf_orderoptions')->insert(array('ooone'=>"$pgone",'ootwo'=>"$pgtwo",'uid'=>"$uid"));
+													echo "</pre>";
+												}
+											}
+											
+											if($file=='OrderOptionsNames.Dat')
+											{
+												$fl=fopen(public_path().'/sffiles/'.$filename.'/'.$file,'r');
+												while(!feof($fl))
+												{	
+													echo "<pre>";
+													$row= fgets($fl) ;
+													$pgone= substr($row,0,7);
+													echo "<br>";
+													DB::table('sf_oonames')->insert(array('ooname'=>"$pgone",'uid'=>"$uid"));
+													echo "</pre>";
+												}
+											}
+											if($file=='OptionsPrice.Dat')
+											{
+												$fl=fopen(public_path().'/sffiles/'.$filename.'/'.$file,'r');
+												while(!feof($fl))
+												{	
+													echo "<pre>";
+													$row= fgets($fl) ;
+													$pgone= substr($row,0,7);
+													$pgtwo= substr($row,6,6);
+													$pgthree= substr($row,12);
+													echo "<br>";
+													DB::table('sf_optionsprice')->insert(array('opone'=>"$pgone",'optwo'=>"$pgtwo",'opthree'=>"$pgthree",'uid'=>"$uid"));
+													echo "</pre>";
+												}
+											}
+											if($file=='OptionsColor.Dat')
+											{
+												$fl=fopen(public_path().'/sffiles/'.$filename.'/'.$file,'r');
+												while(!feof($fl))
+												{	
+													echo "<pre>";
+													$row= fgets($fl) ;
+													$pgone= substr($row,0,9);
+													$pgtwo= substr($row,9,40);
+													$pgthree= substr($row,48);
+													echo "<br>";
+													DB::table('sf_optionscolor')->insert(array('ocone'=>"$pgone",'octwo'=>"$pgtwo",'octhree'=>"$pgthree",'uid'=>"$uid"));
+													echo "</pre>";
+												}
+											}
+											
+										}
 									}
 								}
 							}	
 						}
 						
-											exit;
-						
-						
-						
-						
-						
-						
-						
-						
-/* 						File::deleteDirectory($path."/__MACOSX");								
-						File::delete($path.".zip");								
-						$arr=(scandir(public_path().'/sffiles/'.$filename));
-						foreach($arr as $ell)
-						{
-							if($ell=='.' || $ell=="..")
-							{
-								continue;
-							}
-							
-							if(!empty(array_intersect(array_values(scandir(public_path().'/sffiles/'.$filename."/".$ell)), $basic_array )))
-							{
-							rename(public_path().'/sffiles/'.$filename."/".$ell,$path."/sfdb");
-							}
-							
-						}
-						$values =array('src'=>public_path().'/sffiles/'.$filename,'uid'=>$uid,'timenow'=>time());
-						DB::table('sffiles')->insert($values);
-						
- */						return Redirect::to('sfsix')->with(['message'=>'Succefully Uploaded']);
+					return Redirect::to('sfsix')->with(['message'=>'Succefully Uploaded']);
 						
 						
 					}
@@ -250,13 +308,6 @@ class Sfsix extends Controller
 				}
 				
 				
-				public function delete($id=0)
-				{
-				
-					$values=array('id'=>$id);	
-					DB::table('sffiles')->delete($values);
-					return Redirect::to('sfsix')->with(['message'=>'Succefully Deleted']);
-				}
 				
 
 

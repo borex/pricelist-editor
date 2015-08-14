@@ -155,7 +155,7 @@
           <div class="form-group">
 		    <label for="ipt" class=" control-label col-md-4">Expire Date of Pricelist</label>
 			<div class="col-md-8">
-					<button class="btn btn-primary" style="width:100%" type='submit' >Next &gt;&gt;</button>
+			<input name="prl_expire" id="prl_expire" class="form-control input-sm" Placeholder="Expire" type="text"> 
 			</div> 
 		  </div>   
   		  

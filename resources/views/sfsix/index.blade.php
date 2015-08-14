@@ -44,41 +44,8 @@
 
 	<hr>
 
-	<?php
-    $uid=Session::get('uid');
-	$files=DB::table('sffiles')->where('uid',$uid)->orderBy('id','desc')->get();
-	?>
-
-	<h2>Your Sfsic DB Files</h2>
-	<table class='table table-hover table '>
-    	<thead>
-    	<tr>
-    		<th>SF File</th>
-    		<th>Uploaded At</th>
-    		<th>Delete</th>
-    	</tr>
-        </thead>
-    	<tbody>
-        <?php
-        foreach($files as $file)
-        {
-        ?>
-        <tr>
-    		<th><?php $arr=  explode('/',$file->src); echo end($arr) ?></th>
-    		<th><?php echo date('l jS \of F Y h:i:s A',$file->timenow) ?></th>
-    		<th><a href="<?php echo url('/') ?>/sfsix/deletefile/<?php echo $file->id ?>">Delete</a></th>
-    	</tr>
-        <?php
-        }
-		?>
-        
-        </tbody>
-    
-    
-    
-    
-    </table>
-
+	
+	
 
 </div>
 </div>
